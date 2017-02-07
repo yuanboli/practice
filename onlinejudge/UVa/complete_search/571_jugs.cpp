@@ -133,7 +133,7 @@ int main(int argc, char* argv[]){
 			q.pop();
 			if(current.sizeB == goal){
 				current.print();
-				return 0;
+				break;
 			}
 			for(int i = 0; i < 6; i++){
 				Status newStatus = action(current, i);
