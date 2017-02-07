@@ -15,20 +15,19 @@ public:
 	static int capacityB;
 	int sizeA;
 	int sizeB;
-	queue<int>* actions;
+	queue<int> actions;
 	void print();
 	Status(int a, int b){
 		sizeA = a;
 		sizeB = b;
-		actions = new queue<int>;
 	}
 } ;
 
 
 void Status::print(){
-	while(!actions->empty()){
-		int actNum = actions->front();
-		actions->pop();
+	while(!actions.empty()){
+		int actNum = actions.front();
+		actions.pop();
 
 		switch(actNum){
 			case 0:{
@@ -111,7 +110,7 @@ Status action(Status cur, int actNum)
 		}
 	}
 
-	cur.actions->push(actNum);
+	cur.actions.push(actNum);
 	return cur;
 }
 
@@ -138,7 +137,7 @@ int main(int argc, char* argv[]){
 			}
 			for(int i = 0; i < 6; i++){
 				Status newStatus = action(current, i);
-				if(s.find(std::make_pair(newStatus.sizeA, newStatus.sizeB)) != s.end())
+				if(s.find(std::make_pair(newStatus.sizeA, newStatus.sizeB)) == s.end())
 				{
 					s.insert(std::make_pair(newStatus.sizeA, newStatus.sizeB));
 					q.push(newStatus);
