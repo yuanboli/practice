@@ -36,11 +36,21 @@ int main()
 		}
 		while(case_finish != true)
 		{
+			if(c == -1)
+				break;
 			if(c != '\n')
 			{
+				if(i > size || j > size)
+				{
+					int ii;
+					ii = 0;
+					ii++;
+				}
+				else{
 				value[i][j] = c - '0';
 				j++;
 				c = getchar();
+				}
 			}
 			else
 			{
@@ -69,15 +79,26 @@ int main()
 		//set up dp table
 		int dp[size+1][size+1]; //the number of element in the submatrix endpoint at this position.
 		int startPoint[size+1][size+1][2];
+		int maxH[size+1][size+1];
 		memset(dp, 0, sizeof(dp));
 		memset(startPoint, 0, sizeof(startPoint));
+
+		//calculate highest size of 1 column "1" rect.
+		for(int i = 0; i < size+1; i++)
+			for(int j = 0; j < size+1; j++)
+			{	
+				if(value[i][j] == 0)
+					maxH[i][j] = 0;
+				else
+					maxH[i][j] = maxH[i-1][j] + 1;
+			}
 
 		//calculate table
 		for(int i = 0; i < size+1; i++)
 		{
 			for(int j = 0; j < size+1; j++)
 			{
-				if(value[i][j] != 1)
+/*				if(value[i][j] != 1)
 					dp[i][j] = 0;
 				else
 				{
@@ -123,6 +144,28 @@ int main()
 						startPoint[i][j][1] = j;
 						dp[i][j] = 1;
 					}
+				}
+*/		
+
+				if(value[i][j] == 0)
+					dp[i][j] = 0;
+				else // value[i][j] == 1
+				{
+					int height = 0x0fff;
+					int start_j = j;
+					int sum = 0;
+					while(maxH[i][start_j] != 0)
+					{
+						if(maxH[i][start_j] < height)
+						{
+							height = maxH[i][start_j];
+						}
+						int candidate = (j - start_j + 1)* height;
+						if(candidate > sum)
+							sum = candidate;
+						start_j--;
+					}
+					dp[i][j] = sum;
 				}
 			}
 		}
