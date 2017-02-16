@@ -5,12 +5,6 @@
 using namespace std;
 
 
-int cal_dp(int start_i, int start_j, int i, int j)
-{
-	return (i - start_i + 1) * (j - start_j + 1);
-}
-
-
 int main()
 {
 	int caseNum;
@@ -68,14 +62,6 @@ int main()
 			}
 		}
 
-/*		for(int i = 1; i < size+1; i++)
-		{
-			for(int j = 1; j < size+1; j++)
-			{
-				cin >> value[i][j];
-			}
-		}
-*/
 		//set up dp table
 		int dp[size+1][size+1]; //the number of element in the submatrix endpoint at this position.
 		int startPoint[size+1][size+1][2];
@@ -98,55 +84,6 @@ int main()
 		{
 			for(int j = 0; j < size+1; j++)
 			{
-/*				if(value[i][j] != 1)
-					dp[i][j] = 0;
-				else
-				{
-					if(dp[i-1][j] != 0) //left is 1;
-					{
-						int start_i, start_j;
-						start_i = startPoint[i-1][j][0];
-						
-						//get startPoint col index
-						for(start_j = j; value[i][start_j] == 1 && start_j >= startPoint[i-1][j][1]; start_j--){}
-						start_j++;
-
-						//update dp
-						int new_dp = cal_dp(start_i, start_j, i, j);
-						if(new_dp > dp[i][j])
-						{
-							dp[i][j] = new_dp;
-							startPoint[i][j][0] = start_i;
-							startPoint[i][j][1] = start_j;
-						}
-					}
-					if(dp[i][j-1] != 0)
-					{
-						int start_i, start_j;
-						start_j = startPoint[i][j-1][1];
-						
-						//get startPoint col index
-						for(start_i = i; value[start_i][j] == 1 && start_i >= startPoint[i][j-1][0]; start_i--){}
-						start_i++;
-
-						//update dp
-						int new_dp = cal_dp(start_i, start_j, i, j);
-						if(new_dp > dp[i][j])
-						{
-							dp[i][j] = new_dp;
-							startPoint[i][j][0] = start_i;
-							startPoint[i][j][1] = start_j;
-						}
-					}
-					if(dp[i-1][j] == 0 && dp[i][j-1] == 0)//up and left are all 0
-					{
-						startPoint[i][j][0] = i;
-						startPoint[i][j][1] = j;
-						dp[i][j] = 1;
-					}
-				}
-*/		
-
 				if(value[i][j] == 0)
 					dp[i][j] = 0;
 				else // value[i][j] == 1
