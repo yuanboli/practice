@@ -4,6 +4,7 @@ class Solution{
 		int testNum;
 		Scanner scan = new Scanner(System.in);
 		testNum = scan.nextInt();
+		scan.nextLine();
 		while(testNum > 0){
 		
 		/*content*/
@@ -31,12 +32,15 @@ class Solution{
 		//loop counter update.
 		testNum--;
 		}
+		scan.close();
 	}
 
 
 	private static int getDp(int i, int j, String str, int[][] dp){
 		
 		//have not calculated before
+		if(i > j)
+			return 0;
 		if(dp[i][j] == -1){
 			if(i == j){
 				dp[i][j] = 1;
