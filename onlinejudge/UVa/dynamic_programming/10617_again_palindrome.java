@@ -1,5 +1,5 @@
 import java.util.*;
-class Solution{
+class Main{
 	public static void main(String[] argv){
 		int testNum;
 		Scanner scan = new Scanner(System.in);
