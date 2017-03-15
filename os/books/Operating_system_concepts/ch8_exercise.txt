@@ -1,0 +1,50 @@
+8.1
+	logical addresses: (1) a logical address does not have a specific position in main memory. (2) logical addresses are produced by CPU.
+	physical addresses: (1) a phisical address has a specific position in main memory. (2) physical addresses are produced by MMU.
+
+8.2
+	This scheme shares code in memory, so it saves space, if the question means the code is read-only, it can avoid erroneus and malicious modification
+	disadvantages...
+		according to answer, code and data must be saparated....
+
+8.3
+	it facilitate binary number to represent it.
+		also because, because logical address will be break into page number and offset, the offset is a binary number.
+8.4
+	(a)16. (b)15
+
+8.5
+	shared pages;
+	we can just share the page instead of copying the whole thing;
+	the modified information will also appear in the other logical page.
+
+8.6
+	using some bits in segment table entry to indicate the process owns it.
+	let the two processes share the same segment.
+		correct answer to segment tables have same segment base and limit
+
+8.7
+	(a) different segment tables have same base and limit
+	(b) have different page entries that point to the same frame.
+		?????
+
+8.8
+	(a) set key to 0
+	(b) ??
+
+8.9
+	internal fragmentation is that there are space allocated to the segment/page, but inside of it, the space is not used up.
+	external fragmentation is that between two segments, there are space not used.
+
+8.10
+	The compiler confirm the logical address of the program and then give the logical address and process specifier to the linkage editor, and then it can do the mapping
+
+8.11
+	first-fit:	 115KB process, 300KB partition;	500KB process, 600KB partition;	358KB process, 750KB partition;	200KB process, 350KB partition; 375KB process, rest of the 750KB partition.
+	best-fit:		115KB process,... best fit cost a long time
+	worst-fit just not good at all
+
+8.12
+	c, using page address extention?
+
+8.13
