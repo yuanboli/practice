@@ -13,7 +13,7 @@ class Main{
 		
 		//init
 		int strLen = str.length();
-		int dp[][] = new int[strLen+1][strLen+1];
+		long dp[][] = new long[strLen+1][strLen+1];
 		for(int i = 0; i < strLen + 1; i++)
 			for(int j = 0; j < strLen + 1; j++)
 				dp[i][j] = -1;
@@ -21,7 +21,8 @@ class Main{
 		//calculate dp
 		for(int i = 1; i < strLen + 1; i++){
 			for(int j = 1; j < strLen + 1; j++){
-				getDp(i, j, str, dp);
+				if(dp[i][j] == -1)
+					getDp(i, j, str, dp);
 			}
 		}
 
@@ -36,7 +37,7 @@ class Main{
 	}
 
 
-	private static int getDp(int i, int j, String str, int[][] dp){
+	private static long getDp(int i, int j, String str, long[][] dp){
 		
 		//have not calculated before
 		if(i > j)
