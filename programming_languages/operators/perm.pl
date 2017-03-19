@@ -1,3 +1,4 @@
+/*find permutation of a list*/
 perm([], []).
 perm([H|R], L):-
 	perm(R, L1),
