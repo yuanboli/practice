@@ -15,6 +15,17 @@ int main()
         int res = 0;
         int i = 0;
         while(i < pebble_type_num){
+            if(pebbleNums[i] > pocket_max * 2){
+                int times = pebbleNums[i] / pocket_max / 2;
+                res += times;
+                pebbleNums[i] = pebbleNums[i] - times * 2 * pocket_max;
+            }
+
+            if(pebbleNums[i] == 0){
+                i++;
+            }
+            if(i >= pebble_type_num)
+                break;
             res++;
             //fill a pocket
             if(pebbleNums[i] <= pocket_max){
