@@ -3,7 +3,7 @@
 #include <algorithm>
 using namespace std;
 
-dfs(int** height, int row_num, int col_num, int i, int j){
+int dfs(int** height, int row_num, int col_num, int i, int j){
     int left, right, up, bottom;
     left = right = up = bottom = 1;
     if(j != 0 && height[i][j-1] < height[i][j]){
@@ -25,8 +25,10 @@ int main(){
     //init
     int row_num, col_num;
     std::cin >> row_num >> col_num;
-    int height[row_num][col_num];
-    memset(height, 0, row_num*col_num*sizeof(int));
+    int** height;
+		height = new int*[row_num];
+		for(int i = 0; i < row_num; i++)
+			height[i] = new int[col_num];
 
     //find max
     int cur_max = 0;
@@ -42,5 +44,6 @@ int main(){
         }
     }
 
-    return dfs((int**)height, row_num, col_num, fir, sec);
+    cout << dfs(height, row_num, col_num, fir, sec) << "\n";
+		return 0;
 }
