@@ -24,8 +24,11 @@ int dfs(int** height, int row_num, int col_num, int i, int j){
 int main(){
     //init
     int row_num, col_num;
-    std::cin >> row_num >> col_num;
-    int** height;
+    
+		while(
+		std::cin >> row_num >> col_num)
+		{
+		int** height;
 		height = new int*[row_num];
 		for(int i = 0; i < row_num; i++)
 			height[i] = new int[col_num];
@@ -45,5 +48,6 @@ int main(){
     }
 
     cout << dfs(height, row_num, col_num, fir, sec) << "\n";
+		}
 		return 0;
 }
