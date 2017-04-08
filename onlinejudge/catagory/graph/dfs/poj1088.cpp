@@ -33,6 +33,8 @@ int main(){
 		while(
 		std::cin >> row_num >> col_num)
 		{
+		if(row_num == 0 || col_num == 0)
+			return 0;
 		memset(dp, 0, sizeof(dp));
 		int** height;
 		height = new int*[row_num];
