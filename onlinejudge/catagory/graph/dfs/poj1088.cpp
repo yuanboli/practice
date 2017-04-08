@@ -2,9 +2,13 @@
 #include <cstring>
 #include <algorithm>
 using namespace std;
+int dp[102][102];
 
 int dfs(int** height, int row_num, int col_num, int i, int j){
-    int left, right, up, bottom;
+    if(dp[i][j] != 0){
+			return dp[i][j];
+		}
+		int left, right, up, bottom;
     left = right = up = bottom = 1;
     if(j != 0 && height[i][j-1] < height[i][j]){
         left += dfs(height, row_num, col_num, i, j-1);
@@ -18,7 +22,8 @@ int dfs(int** height, int row_num, int col_num, int i, int j){
     if(i != row_num-1 && height[i+1][j] < height[i][j]){
         bottom += dfs(height, row_num, col_num, i+1, j);
     }
-    return max(left, max(right, max(up, bottom)));
+		dp[i][j] = max(left, max(right, max(up, bottom)));
+		return dp[i][j];
 }
 
 int main(){
@@ -28,6 +33,7 @@ int main(){
 		while(
 		std::cin >> row_num >> col_num)
 		{
+		memset(dp, 0, sizeof(dp));
 		int** height;
 		height = new int*[row_num];
 		for(int i = 0; i < row_num; i++)
