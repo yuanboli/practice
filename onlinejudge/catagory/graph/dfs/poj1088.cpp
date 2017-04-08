@@ -43,19 +43,21 @@ int main(){
 
     //find max
     int cur_max = 0;
-    int fir = 0, sec = 0;
     for(int i = 0; i < row_num; i++){
         for(int j = 0; j < col_num; j++){
             cin >> height[i][j];
-            if(height[i][j] > cur_max){
-                cur_max = height[i][j];
-                fir = i;
-                sec = j;
-            }
         }
     }
 
-    cout << dfs(height, row_num, col_num, fir, sec) << "\n";
+		for(int i = 0; i < row_num; i++){
+			for(int j = 0; j < col_num; j++){
+				if(dfs(height, row_num, col_num, i, j) > cur_max){
+					cur_max = dfs(height, row_num, col_num, i, j);
+				}
+			}
+		}
+
+    cout << cur_max << "\n";
 		}
 		return 0;
 }
