@@ -7,6 +7,7 @@ using namespace std;
 int lightNum, counter;
 set<pair<vector<int>, int> > s;
 vector<int> on, off;
+set<vector<int> > configs;
 
 bool valid(vector<int>& lights){
     //check on
@@ -23,7 +24,7 @@ bool valid(vector<int>& lights){
     return true;
 }
 
-void display(vector<int>& lights){
+void display(const vector<int>& lights){
     for(int i = 0 ; i < lights.size(); i++){
         cout << lights[i];
     }
@@ -31,7 +32,7 @@ void display(vector<int>& lights){
     return;
 }
 
-vector<int> button(vector<int>& lights, int buttonNum){
+vector<int> button(vector<int> lights, int buttonNum){
     vector<int> result(lights);
     if(buttonNum == 1){
         for(int i = 0; i < lights.size(); i++){
@@ -78,7 +79,8 @@ void dfs(vector<int> lights, int cntr){
     s.insert(make_pair(lights, cntr));
     if(counter == cntr){
         if(valid(lights)){
-            display(lights);
+            //display(lights);
+						configs.insert(lights);
         }
         return;
     }
@@ -127,6 +129,10 @@ int main(){
     vector<int>::iterator it = lights.begin();
     lights.insert(it, lightNum, 1);
     dfs(lights, 0);
+
+		for(set<vector<int> >::iterator sit = configs.begin(); sit != configs.end(); sit++){
+			display(*sit);
+		}
 
     return 0;
 }
