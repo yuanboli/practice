@@ -94,6 +94,16 @@ int main(){
     //init
     cin >> lightNum >> counter;
 
+		if(counter > 4)
+		{
+			if(counter % 2 == 1){
+				counter = 3;
+			}
+			else{
+				counter = 4;
+			}
+		}
+
     while(true){
         int temp;
         cin >> temp;
