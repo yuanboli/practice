@@ -11,12 +11,12 @@ vector<int> on, off;
 bool valid(vector<int>& lights){
     //check on
     for(int i = 0; i < on.size(); i++){
-        if(lights[on[i]] != 1)
+        if(lights[on[i] - 1] != 1)
             return false;
     }
     //check off
     for(int i = 0; i < off.size(); i++){
-        if(lights[off[i]] != 0){
+        if(lights[off[i] - 1] != 0){
             return false;
         }
     }
@@ -36,37 +36,37 @@ void display(vector<int>& lights){
 }
 
 vector<int> button(vector<int>& lights, int buttonNum){
-    vector<int> result;
+    vector<int> result(lights);
     if(buttonNum == 1){
         for(int i = 0; i < lights.size(); i++){
             if(lights[i] == 0){
-                result.push_back(1);
+                result[i] = 1;
             }else{
-                result.push_back(0);
+                result[i] = 0;
             }
         }
     }else if(buttonNum == 2){
         for(int i = 0; i < lights.size(); i = i + 2){
             if(lights[i] == 0){
-                result.push_back(1);
+                result[i] = 1;
             }else{
-                result.push_back(0);
+                result[i] = 0;
             }
         }
     }else if(buttonNum == 3){
         for(int i = 1; i < lights.size(); i = i + 2){
             if(lights[i] == 0){
-                result.push_back(1);
+                result[i] = 1;
             }else{
-                result.push_back(0);
+                result[i] = 0;
             }
         }
     }else{
         for(int i = 0; i < lights.size(); i = i + 3){
             if(lights[i] == 0){
-                result.push_back(1);
+                result[i] = 1;
             }else{
-                result.push_back(0);
+                result[i] = 0;
             }
         }
     }
