@@ -26,12 +26,8 @@ bool valid(vector<int>& lights){
 void display(vector<int>& lights){
     for(int i = 0 ; i < lights.size(); i++){
         cout << lights[i];
-        if(i != lights.size() - 1){
-            cout << " ";
-        }else{
-            cout << endl;
-        }
     }
+    cout << endl;
     return;
 }
 
