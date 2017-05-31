@@ -7,15 +7,16 @@ class CurrencyEdge;
 
 class CurrencyNode{
 public:
-    list<CurrencyEdge*> edges;
+    list<CurrencyEdge*>* edges;
     double dis;
 
     CurrencyNode(){
         dis = 0;
+				edges = new list<CurrencyEdge*>();
     }
 
     void addEdge(CurrencyEdge* edge){
-        edges.push_back(edge);
+        edges->push_back(edge);
     }
 };
 
@@ -36,7 +37,7 @@ public:
 
 int currencyNum, pointNum, currency;
 double quantity;
-CurrencyNode *nodes;
+//CurrencyNode *nodes;
 
 bool bellman_ford(CurrencyNode* nodes, int nodeNum, int source, double value)
 {
@@ -46,8 +47,8 @@ bool bellman_ford(CurrencyNode* nodes, int nodeNum, int source, double value)
     {
         for(int j = 0; j < nodeNum; j++)
         {
-            list<CurrencyEdge*>::iterator itr = nodes[j].edges.begin();
-            for(; itr != nodes[j].edges.end(); itr++)
+            list<CurrencyEdge*>::iterator itr = nodes[j].edges->begin();
+            for(; itr != nodes[j].edges->end(); itr++)
             {
                 if(nodes[j].dis != 0)
                 {
@@ -63,8 +64,8 @@ bool bellman_ford(CurrencyNode* nodes, int nodeNum, int source, double value)
 
     for(int j = 0; j < nodeNum; j++) //judge negative circle
     {
-        list<CurrencyEdge*>::iterator itr = nodes[j].edges.begin();
-        for(; itr != nodes[j].edges.end(); itr++)
+        list<CurrencyEdge*>::iterator itr = nodes[j].edges->begin();
+        for(; itr != nodes[j].edges->end(); itr++)
         {
             if(nodes[j].dis != 0)
             {
@@ -83,7 +84,7 @@ bool bellman_ford(CurrencyNode* nodes, int nodeNum, int source, double value)
 int main(){
     //read data
     cin >> currencyNum >> pointNum >> currency >> quantity;
-    nodes = new CurrencyNode[currencyNum]();
+    CurrencyNode nodes[currencyNum];
     int i = 0;
     while(i < currencyNum){
         int currencyA, currencyB;
@@ -92,13 +93,13 @@ int main(){
         cin >> commissionAB >> rateBA >> commissionBA;
 
         //build graph
-        nodes[currencyA].addEdge(new CurrencyEdge(currencyA, currencyB, rateAB, commissionAB));
-        nodes[currencyB].addEdge(new CurrencyEdge(currencyB, currencyA, rateBA, commissionBA));
+        nodes[currencyA-1].addEdge(new CurrencyEdge(currencyA-1, currencyB-1, rateAB, commissionAB));
+        nodes[currencyB-1].addEdge(new CurrencyEdge(currencyB-1, currencyA-1, rateBA, commissionBA));
 
         i++;
     }
 
-    if(bellman_ford(nodes, currencyNum, currency, quantity)){
+    if(bellman_ford(nodes, currencyNum, currency-1, quantity)){
         cout << "YES\n";
     }
     else{
