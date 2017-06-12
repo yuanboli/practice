@@ -1,5 +1,7 @@
 class interp {
-  static void interp(Stm s) { /* you write this part */ }
+  static void interp(Stm s) { 
+	  s.interpStm(new Table(null, -1, null));
+	}
 
   static int maxargs(Stm s) { 
 		return s.maxargs();
