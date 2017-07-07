@@ -11,8 +11,8 @@ int main(){
         if(l == 0 && p == 0 && v == 0){
             break;
         }
-        int t = v % p;
-        int result = t * l + min(l, v - t * p);
+        int t = v / p;
+        int result = t * l + min(l, v % p);
         cout << "Case " << caseNum << ": " << result << endl;
         caseNum ++;
     }
