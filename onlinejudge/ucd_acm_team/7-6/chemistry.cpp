@@ -116,7 +116,7 @@ Env* getOneLevelEnv(string::iterator& itr, string& str){
     }
 	if(temp != NULL){
 		e->add(temp);
-		free(e);
+		free(temp);
 		temp = NULL;
 	}else if(p.first != ""){
 		map<string, long long>::iterator tempItr = e->atomCounter->find(p.first);
