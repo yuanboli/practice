@@ -1,0 +1,3 @@
+c++ running time: 0.05494.
+python running time: 6.367379426956177
+julia running time: elapsed time: 0.414469716 seconds
